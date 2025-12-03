@@ -20,11 +20,12 @@ model.load_state_dict(checkpoint["model_state_dict"])
 model.to(device)
 model.eval()
 
-context = torch.zeros((1, 1), dtype=torch.long, device=device)
+prompt = "RAFI: But"
+context = torch.tensor([encode(prompt)], dtype=torch.long, device=device)
+# context = torch.zeros((1, 1), dtype=torch.long, device=device)
 
-open('more5.txt', 'w').write(decode(model.generate(context, max_new_tokens=1000)[0].tolist()))
+open('more8.txt', 'w').write(decode(model.generate(context, max_new_tokens=1000)[0].tolist()))
 # # Your new input (prompt)
-# prompt = "To be, or not to be"
 
 # # Generate continuation
 # with torch.no_grad():
