@@ -237,4 +237,4 @@ if __name__ == "__main__":
     
     torch.save(checkpoint, "gpt_shakespeare.pt")
     # print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
-    open('more5.txt', 'w').write(decode(m.generate(context, max_new_tokens=1000)[0].tolist()))
+    # open('more5.txt', 'w').write(decode(m.generate(context, max_new_tokens=1000)[0].tolist()))

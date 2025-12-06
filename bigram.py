@@ -10,7 +10,15 @@ block_size = 256 # what is the maximum context length for predictions?
 max_iters = 30000
 eval_interval = 300
 learning_rate = 1e-2
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# device selection: prefer CUDA, then ROCm (AMD), then CPU
+if torch.cuda.is_available():
+    device = 'cuda'
+elif hasattr(torch, 'hip') and torch.hip.is_available():
+    device = 'hip'
+elif torch.backends.mps.is_available():
+    device = 'mps'
+else:
+    device = 'cpu'
 eval_iters = 200
 # ------------
 
